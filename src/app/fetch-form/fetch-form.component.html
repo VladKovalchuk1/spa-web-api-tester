@@ -1,0 +1,69 @@
+<div style="height: 1920px; display: flex; justify-content: center">
+  <form style="width: 1050px">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Path to resources</label>
+      <input
+        [(ngModel)]="url"
+        [ngModelOptions]="{ standalone: true }"
+        type="url"
+        class="form-control"
+        id="pathToResources"
+        aria-describedby="emailHelp"
+        placeholder="http://localhost:4200/api/user/"
+        required
+      />
+    </div>
+    <button type="submit" (click)="sendRequst()" class="btn btn-primary">
+      Send Request
+    </button>
+    <span style="padding-right: 10px"> </span>
+    <button type="submit" (click)="getResponse()" class="btn btn-primary">
+      Get Response
+    </button>
+    <div *ngIf="res.error.status; else noErrorTable">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">OK</th>
+            <th scope="col">Message</th>
+            <th scope="col">Status</th>
+            <th scope="col">URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <th scope="row">1</th>
+            <td>{{ res.error.ok }}</td>
+            <td>{{ res.error.message }}</td>
+            <td>{{ res.error.status }}</td>
+            <td>{{ res.error.url }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+
+<ng-template #noErrorTable>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">OK</th>
+        <th scope="col">Message</th>
+        <th scope="col">Status</th>
+        <th scope="col">URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>No data</td>
+        <td>No data</td>
+        <td>No data"</td>
+        <td>No data"</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
